@@ -1,0 +1,48 @@
+<breadcrumb [data]="breadCrumbData" title="Product Details"></breadcrumb>
+<div class="page-header">
+  <div class="row">
+    <div class="col-md-6 col-lg-6">
+      <label class="required">Name</label>
+      <form-input defaultValue="{{this.productDetails?.name}}" inputType="text" name="name"></form-input>
+    </div>
+    <div class="col-md-6 col-lg-6">
+      <label class="required">Tags</label>
+      <form-input defaultValue="{{this.productDetails?.tags}}" inputType="text" name="tags"></form-input>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-lg-6">
+      <label class="required">Price</label>
+      <form-input defaultValue="$ {{this.productDetails?.price}}" inputType="text" name="price"></form-input>
+    </div>
+
+    <div class="col-md-6 col-lg-6">
+      <label>Sale price</label>
+      <form-input defaultValue="$ {{this.productDetails?.sale_price || this.productDetails?.price}}" inputType="text"
+                  name="sale_price"></form-input>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-lg-6">
+      <label class="required">Description</label>
+      <div class="form-group form-group-description">
+          <textarea class="form-control form-control-lg" readonly="true"
+                    rows="6"
+                    value="{{this.productDetails?.description}}"></textarea>
+        <div class="form-control-feedback has-danger"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-1">
+    <div class="col-md-12 col-lg-12">
+      <div class="row">
+        <div *ngFor="let imgSrc of this.productDetails?.images">
+          <image-preview [imageId]="imgSrc?.file?.id" [imageSrc]="imgSrc?.file?.url" imageType="icon"></image-preview>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
