@@ -1,0 +1,40 @@
+<div class="card-box overflow-hidden">
+  <div class="p-4">
+    <div class="d-flex pb-2">
+      <div class="align-self-start">
+        <span class="h6">Products ({{totalElements}})</span>
+      </div>
+    </div>
+    <ngx-datatable
+        #productList
+        (activate)="onRowClick($event)"
+        (scroll)="onScroll($event.offsetY)"
+        [columnMode]="ColumnMode.standard"
+        [headerHeight]="headerHeight"
+        [loadingIndicator]="isLoading"
+        [rowHeight]="rowHeight"
+        [rows]="rows"
+        [scrollbarV]="true"
+        class="material bg-white box-shadow-none border-1 server-scrolling-demo"
+        reorderable="false">
+
+      <ngx-datatable-column [sortable]="false" [width]="80" name="" prop="images">
+        <ng-template let-images="value" ngx-datatable-cell-template>
+          <img height="50" src="{{images[0]?.file?.url}}">
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [sortable]="false" [width]="250" name="Name" prop="name">
+        <ng-template let-name="value" ngx-datatable-cell-template>
+          {{name}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [sortable]="false" [width]="250" name="Price" prop="price">
+        <ng-template let-price="value" ngx-datatable-cell-template>
+          $ {{price}}
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>
